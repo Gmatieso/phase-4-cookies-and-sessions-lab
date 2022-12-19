@@ -8,6 +8,10 @@ class ArticlesController < ApplicationController
 
   def show
     article = Article.find(params[:id])
+    # first request set page to 0
+    session[:page_views] ||= 0
+    
+    render json: { session: session, cookies: cookies.to_hash }
     render json: article
   end
 
